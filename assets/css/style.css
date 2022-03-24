@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  background-image: linear-gradient(to right, #3b6cc2, #230657);
+}
+
+header h1 {
+  padding-top: 6px;
+  padding-bottom: 12px;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  margin: 0;
+}
+
+/* Search column */
+
+.searchCity h2 {
+  font-weight: bolder;
+  font-size: 23px;
+}
+
+.searchCity input {
+  padding: 6px;
+  margin: 4px 0;
+  width: 100%;
+}
+
+#searchBtn {
+  text-decoration: none;
+  background-color: #5aa2e9;
+  color: #c3def1;
+  border-radius: 4px;
+  width: 100%;
+  margin: 8px 0 10px 0;
+  border: none;
+  padding: 3px;
+}
+
+#searchArea {
+  border-bottom: #828282 solid 2px;
+}
+
+/* Info Column */
+
+#currentDay {
+  border: #828282 solid 2px;
+}
+
+.displayInfo h2 {
+  font-weight: bolder;
+  padding: 4px;
+}
+
+#fiveDay h3 {
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+#fiveDay div {
+  display: inline-flex;
+  width: 19%;
+  justify-content: space-between;
+}
