@@ -1,5 +1,6 @@
 https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb'
 
+var inputBox = document.getElementById('cityName');
 
 var searchBtn = document.getElementById('searchBtn');
 var currentDateCity = document.querySelector('#cityDate')
@@ -30,12 +31,14 @@ function findCity() {
 }
 
 //info needed - City, (Date), and icon -  Temp, wind, humidity, uv index (with color -if else statement)
-var city = document.getElementById('cityName').value;
 
-async function currentWeather() {
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + 'charlotte' + '&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb')
-    .then(response => response.json())
-    .then(data => {
+function currentWeather(event) {
+    event.preventDefault()
+    var city = inputBox.value
+    console.log(city)
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb').then(function (response) {
+        return response.json();
+    }).then(data => {
         var clearText = document.getElementById('cityDate');
         clearText.innerHTML = ''
   
@@ -71,7 +74,7 @@ async function currentWeather() {
 // }
 
 searchBtn.addEventListener('click', findCity);
-searchBtn.addEventListener('click', currentWeather);
+searchBtn.addEventListener('submit', currentWeather);
 
 
 //function to clear out the input box
