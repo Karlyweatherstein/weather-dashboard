@@ -70,6 +70,7 @@ header h1 {
 
 #currentDay {
   border: #828282 solid 2px;
+  padding: 8px;
 }
 
 .displayInfo h2 {
@@ -96,6 +97,26 @@ header h1 {
   margin: 2px 7px;
 }
 
-#cardsDisplay div h4 {
-  padding-left: 45px;
+/* UV colors */
+.lowUv {
+  background-color: green;
+  color: white;
+  width: 10%;
+  padding: 2px;
+  border-radius: 6%;
+}
+
+.mediumUv {
+  background-color: yellow;
+  width: 10%;
+  padding: 2px;
+  border-radius: 6%;
+}
+
+.highUv {
+  background-color: red;
+  color: white;
+  width: 14%;
+  padding: 2px;
+  border-radius: 6%;
 }
