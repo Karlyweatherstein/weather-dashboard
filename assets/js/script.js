@@ -69,36 +69,35 @@ function getCurrent() {
         fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + currentLat + '&lon=' + currentLon + '&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb').then(function (response) {
             return response.json();
         }).then(data => {
-
+            //Current Day 
             var displayTemp = data.daily[0].temp.day
             var displayWind = data.current.wind_speed
             var displayHumidity = data.current.humidity
             var displayUv = data.current.uvi
             
-
-    
             // creating an element for each route
             var displayTempEl = document.createElement('p').innerText = 'Temp: ' + displayTemp + ' °F';
             var displayWindEl = document.createElement('p').innerText = 'Wind: ' + displayWind + ' MPH';
             var displayHumidityEl = document.createElement('p').innerText = 'Humidity: ' + displayHumidity + ' %';
             var displayUvEl = document.createElement('p').innerText = 'UV Index: ' + displayUv;
             
-
             //Changes the UV element's color 
             if (displayUv <= 2) {
                 currentCityUv.classList.add("lowUv")
-            } else if (displayUv > 2 && displayUv <= 4) {
+            } else if (displayUv > 2 && displayUv <= 5) {
                 currentCityUv.classList.add("mediumUv")
-            } else {
+            } else  {
                 currentCityUv.classList.add("highUv")
             };
 
             // append to html
-
             currentCityTemp.append(displayTempEl)
             currentCityWind.append(displayWindEl)
             currentCityHumidity.append(displayHumidityEl)
             currentCityUv.append(displayUvEl)
+
+            // 5 - Day forecast 
+            //info needed - Date, icon, temp, wind speed, and humidity
 
                 
     
@@ -111,25 +110,11 @@ function getCurrent() {
     currentCityUv.innerHTML = ''
 
 
-
-    findCity()
-    // fiveDayWeather()
+    findCity();
 }
 
 
 
-// info needed - Date, icon, temp, wind speed, and humidity
-function fiveDayWeather() {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city.value+'&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb').then(function (response) {
-        return response.json();
-        }).then(function (data) {
-        for(i=0; i<5; i++) {
-            
-        }
-
-    }).catch;
-
-}
 
 searchBtn.addEventListener('click', getCurrent);
 
