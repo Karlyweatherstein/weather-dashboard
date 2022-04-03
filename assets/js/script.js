@@ -65,6 +65,10 @@ function getCurrent() {
         var displayNameEl = document.createElement('p').innerText = displayName + ' (' + displayDate + ')' + ' ' 
         currentIcon.append(displayNameEl, iconImg)
 
+        var clearWeekEl = document.querySelector('.clearLoading');
+        clearWeekEl.innerHTML = ''
+
+
 
         fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + currentLat + '&lon=' + currentLon + '&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb').then(function (response) {
             return response.json();
@@ -96,8 +100,56 @@ function getCurrent() {
             currentCityHumidity.append(displayHumidityEl)
             currentCityUv.append(displayUvEl)
 
+
+
             // 5 - Day forecast 
             //info needed - Date, icon, temp, wind speed, and humidity
+            for (i = 0; i < 5; i++) {
+                var weekTime = moment().add(i + 1, 'days').format('L')
+                var weekTemp = data.daily[i].temp.day
+                var weekWind = data.daily[i].wind_speed
+                var weekHumidity = data.daily[i].humidity
+                var weekIcon = data.daily[i].weather[0].icon
+
+                var weekIconUrl = 'http://openweathermap.org/img/wn/' + weekIcon + '@2x.png'
+
+                
+                // creating an element for each route
+                var displayWeekTime = document.createElement('h3').innerText = weekTime
+                var displayWeekTempEl = document.createElement('p').innerText = 'Temp: ' + weekTemp + ' °F';
+                var displayWeekWindEl = document.createElement('p').innerText = 'Wind: ' + weekWind + ' MPH';
+                var displayWeekHumidityEl = document.createElement('p').innerText = 'Humidity: ' + weekHumidity + ' %';
+                var iconImgWeek = document.createElement("img")
+                iconImgWeek.setAttribute('src', weekIconUrl)
+
+
+                var first = document.querySelector('#dayOne')
+                first.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
+
+        
+
+                // var second = document.querySelector('#dayTwo')
+                // second.append([2], displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
+
+            }
+            // var first = document.querySelector('#dayOne')
+            // first.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
+            var one = i === 0
+            var two = i === 1
+            var three = i === 2
+            var four = i === 3
+            var five = i === 4
+
+
+
+
+
+            // if(one) {
+            //     var first = document.querySelector('#dayOne')
+            //     first.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
+            // }
+
+
 
                 
     

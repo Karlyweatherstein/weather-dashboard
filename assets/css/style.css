@@ -88,6 +88,10 @@ header h1 {
   padding: 12px 0 2px 0;
 }
 
+#fiveDay h4 {
+  font-size: 12px;
+}
+
 #cardsDisplay div {
   display: inline-flex;
   width: 18%;
