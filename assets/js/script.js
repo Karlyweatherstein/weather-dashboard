@@ -1,10 +1,15 @@
-https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb'
+// selecting areas of the HTML to append to later
 var inputBox = document.getElementById('cityName');
+var first = document.querySelector('#dayOne')
+var second = document.querySelector('#dayTwo')
+var third = document.querySelector('#dayThree')
+var fourth = document.querySelector('#dayFour')
+var fifth = document.querySelector('#dayFive')
 
-
+//grabbing the search btn
 var searchBtn = document.getElementById('searchBtn');
 
-
+//this takes the input that was entered and stores it while also creating a search history button 
 function findCity() {
    var city = document.getElementById('cityName').value;
    var searchHistory = document.querySelector('#searchHistory')
@@ -24,10 +29,15 @@ function findCity() {
     cityHistory.textContent = cityArr
     searchHistory.append(cityHistory)
     cityHistory.className = "searchBtnHistory";
-    
-    // cityHistory.append(cityArr)
+  
 
 }
+  
+    first.innerText = "";
+    second.innerText = "";
+    third.innerText = "";
+    fourth.innerText = "";
+    fifth.innerText = "";
 
 //info needed - City, (Date), and icon -  Temp, wind, humidity, uv index (with color -if else statement)
 var currentIcon = document.querySelector('#cityDate');
@@ -78,6 +88,7 @@ function getCurrent() {
             var displayWind = data.current.wind_speed
             var displayHumidity = data.current.humidity
             var displayUv = data.current.uvi
+
             
             // creating an element for each route
             var displayTempEl = document.createElement('p').innerText = 'Temp: ' + displayTemp + ' °F';
@@ -100,11 +111,10 @@ function getCurrent() {
             currentCityHumidity.append(displayHumidityEl)
             currentCityUv.append(displayUvEl)
 
-
             var weekDataAr = []
 
+
             // 5 - Day forecast 
-            //info needed - Date, icon, temp, wind speed, and humidity
             for (i = 0; i < 5; i++) {
                 var weekTime = moment().add(i + 1, 'days').format('L')
                 var weekTemp = data.daily[i].temp.day
@@ -115,89 +125,82 @@ function getCurrent() {
                 var weekIconUrl = 'http://openweathermap.org/img/wn/' + weekIcon + '@2x.png'
                 
                 weekDataAr.push(weekTime, weekTemp, weekWind, weekHumidity, weekIconUrl) 
-                console.log(weekDataAr)
-
-
-                
             }
 
-                var first = document.querySelector('#dayOne')
                 // creating an element for each route
 
                 //Day 1
-                var displayWeekTime = document.createElement('h3').innerText = weekDataAr[0]
-                first.append(displayWeekTime)
-                var displayWeekTempEl = document.createElement('p').innerText = 'Temp: ' + weekDataAr[1] + ' °F';
-                first.append(displayWeekTempEl)
-                var displayWeekWindEl = document.createElement('p').innerText = 'Wind: ' + weekDataAr[2] + ' MPH';
-                first.append(displayWeekWindEl)
-                var displayWeekHumidityEl = document.createElement('p').innerText = 'Humidity: ' + weekDataAr[3] + ' %';
-                first.append(displayWeekHumidityEl)
-                var iconImgWeek = document.createElement("img")
-                iconImgWeek.setAttribute('src', weekDataAr[4])
-                first.append(iconImgWeek)
+                var displayWeekTime = document.createElement('h4')
+                displayWeekTime.innerText = weekDataAr[0];
+                var displayWeekTempEl = document.createElement('p')
+                displayWeekTempEl.innerText = 'Temp: ' + weekDataAr[1] + ' °F';
+                var displayWeekWindEl = document.createElement('p')
+                displayWeekWindEl.innerText = 'Wind: ' + weekDataAr[2] + ' MPH';
+                var displayWeekHumidityEl = document.createElement('p')
+                displayWeekHumidityEl.innerText = 'Humidity: ' + weekDataAr[3] + ' %';
+                var iconImgWeek = document.createElement("img");
+                iconImgWeek.setAttribute('src', weekDataAr[4]);
+                
+                first.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
 
                 //Day 2
-                var second = document.querySelector('#dayTwo')
-                var displayWeekTime = document.createElement('h3').innerText = weekDataAr[5]
-                second.append(displayWeekTime)
-                var displayWeekTempEl = document.createElement('p').innerText = 'Temp: ' + weekDataAr[6] + ' °F';
-                second.append(displayWeekTempEl)
-                var displayWeekWindEl = document.createElement('p').innerText = 'Wind: ' + weekDataAr[7] + ' MPH';
-                second.append(displayWeekWindEl)
-                var displayWeekHumidityEl = document.createElement('p').innerText = 'Humidity: ' + weekDataAr[8] + ' %';
-                second.append(displayWeekHumidityEl)
+                var displayWeekTime = document.createElement('h4')
+                displayWeekTime.innerText = weekDataAr[5];
+                var displayWeekTempEl = document.createElement('p')
+                displayWeekTempEl.innerText = 'Temp: ' + weekDataAr[6] + ' °F';
+                var displayWeekWindEl = document.createElement('p')
+                displayWeekWindEl.innerText = 'Wind: ' + weekDataAr[7] + ' MPH';
+                var displayWeekHumidityEl = document.createElement('p')
+                displayWeekHumidityEl.innerText = 'Humidity: ' + weekDataAr[8] + ' %';
                 var iconImgWeek = document.createElement("img")
                 iconImgWeek.setAttribute('src', weekDataAr[9])
-                second.append(iconImgWeek)
+                second.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
                 
                 //Day 3
-                var third = document.querySelector('#dayThree')
-                var displayWeekTime = document.createElement('h3').innerText = weekDataAr[10]
-                third.append(displayWeekTime)
-                var displayWeekTempEl = document.createElement('p').innerText = 'Temp: ' + weekDataAr[11] + ' °F';
-                third.append(displayWeekTempEl)
-                var displayWeekWindEl = document.createElement('p').innerText = 'Wind: ' + weekDataAr[12] + ' MPH';
-                third.append(displayWeekWindEl)
-                var displayWeekHumidityEl = document.createElement('p').innerText = 'Humidity: ' + weekDataAr[13] + ' %';
-                third.append(displayWeekHumidityEl)
+                var displayWeekTime = document.createElement('h4')
+                displayWeekTime.innerText = weekDataAr[10];
+                var displayWeekTempEl = document.createElement('p')
+                displayWeekTempEl.innerText = 'Temp: ' + weekDataAr[11] + ' °F';
+                var displayWeekWindEl = document.createElement('p')
+                displayWeekWindEl.innerText = 'Wind: ' + weekDataAr[12] + ' MPH';
+                var displayWeekHumidityEl = document.createElement('p')
+                displayWeekHumidityEl.innerText = 'Humidity: ' + weekDataAr[13] + ' %';
                 var iconImgWeek = document.createElement("img")
                 iconImgWeek.setAttribute('src', weekDataAr[14])
-                third.append(iconImgWeek)
+                third.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
 
                 //Day 4
-                var fourth = document.querySelector('#dayFour')
-                var displayWeekTime = document.createElement('h3').innerText = weekDataAr[15]
-                fourth.append(displayWeekTime)
-                var displayWeekTempEl = document.createElement('p').innerText = 'Temp: ' + weekDataAr[16] + ' °F';
-                fourth.append(displayWeekTempEl)
-                var displayWeekWindEl = document.createElement('p').innerText = 'Wind: ' + weekDataAr[17] + ' MPH';
-                fourth.append(displayWeekWindEl)
-                var displayWeekHumidityEl = document.createElement('p').innerText = 'Humidity: ' + weekDataAr[18] + ' %';
-                fourth.append(displayWeekHumidityEl)
+                var displayWeekTime = document.createElement('h4')
+                displayWeekTime.innerText = weekDataAr[15];
+                var displayWeekTempEl = document.createElement('p')
+                displayWeekTempEl.innerText = 'Temp: ' + weekDataAr[16] + ' °F';
+                var displayWeekWindEl = document.createElement('p')
+                displayWeekWindEl.innerText = 'Wind: ' + weekDataAr[17] + ' MPH';
+                var displayWeekHumidityEl = document.createElement('p')
+                displayWeekHumidityEl.innerText = 'Humidity: ' + weekDataAr[18] + ' %';
                 var iconImgWeek = document.createElement("img")
                 iconImgWeek.setAttribute('src', weekDataAr[19])
-                fourth.append(iconImgWeek)
+                fourth.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
             
                 //Day 5
-                var fifth = document.querySelector('#dayFive')
-                var displayWeekTime = document.createElement('h3').innerText = weekDataAr[20]
-                fifth.append(displayWeekTime)
-                var displayWeekTempEl = document.createElement('p').innerText = 'Temp: ' + weekDataAr[21] + ' °F';
-                fifth.append(displayWeekTempEl)
-                var displayWeekWindEl = document.createElement('p').innerText = 'Wind: ' + weekDataAr[22] + ' MPH';
-                fifth.append(displayWeekWindEl)
-                var displayWeekHumidityEl = document.createElement('p').innerText = 'Humidity: ' + weekDataAr[23] + ' %';
-                fifth.append(displayWeekHumidityEl)
+                var displayWeekTime = document.createElement('h4')
+                displayWeekTime.innerText = weekDataAr[20];
+                var displayWeekTempEl = document.createElement('p')
+                displayWeekTempEl.innerText = 'Temp: ' + weekDataAr[21] + ' °F';
+                var displayWeekWindEl = document.createElement('p')
+                displayWeekWindEl.innerText = 'Wind: ' + weekDataAr[22] + ' MPH';
+                var displayWeekHumidityEl = document.createElement('p')
+                displayWeekHumidityEl.innerText = 'Humidity: ' + weekDataAr[23] + ' %';
                 var iconImgWeek = document.createElement("img")
                 iconImgWeek.setAttribute('src', weekDataAr[24])
-                fifth.append(iconImgWeek)
-
-                
+                fifth.append(displayWeekTime, iconImgWeek, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl)
     
+                // allEl = displayWeekTime, displayWeekTempEl, displayWeekWindEl, displayWeekHumidityEl
 
     })}).catch;  
     
+
+
     currentCityTemp.innerHTML = ''
     currentCityWind.innerHTML = ''
     currentCityHumidity.innerHTML = ''

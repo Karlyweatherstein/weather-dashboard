@@ -88,16 +88,12 @@ header h1 {
   padding: 12px 0 2px 0;
 }
 
-#fiveDay h4 {
-  font-size: 12px;
-}
-
 #cardsDisplay div {
   display: inline-flex;
   width: 18%;
   background-color: #33475a;
   color: white;
-  padding: 3px;
+  padding: 6px;
   margin: 2px 7px;
 }
 
@@ -124,4 +120,14 @@ header h1 {
   width: 14%;
   padding: 2px;
   border-radius: 6%;
+}
+
+.weekCards {
+  display: block;
+  padding: 8px;
+}
+
+#cardsDisplay div div {
+  font-size: 15px;
+  display: block;
 }
