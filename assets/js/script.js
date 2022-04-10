@@ -49,7 +49,7 @@ var currentCityUv = document.querySelector('#cityDateUv')
 var clearText = document.getElementById('cityDate');
 
 
-
+//Plugs in the input from find city in to the api that outputs the lon and lat
 function getCurrent() {
     var city = inputBox.value.trim(); 
     console.log(city)
@@ -79,7 +79,7 @@ function getCurrent() {
         clearWeekEl.innerHTML = ''
 
 
-
+        //takes the lon and lat and outputs temp, wind, humidity, and uv
         fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + currentLat + '&lon=' + currentLon + '&exclude=minutely,hourly,alerts&units=imperial&appid=dfd0fa54b8ca7bb6ab4b97c29d03aacb').then(function (response) {
             return response.json();
         }).then(data => {
